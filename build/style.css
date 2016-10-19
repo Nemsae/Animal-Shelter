@@ -1,0 +1,15 @@
+.card-img-top {
+  width: 300px;
+  height: 300px;
+}
+
+.card {
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 350px;
+  margin: 15px;
+}
+
+.updateButton {
+  margin-bottom: 10px;
+}
