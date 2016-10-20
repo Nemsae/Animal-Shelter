@@ -82,7 +82,7 @@ export default class TheSaints extends Component {
                     <img className='card-img-top' src='https://i.ytimg.com/vi/9JmD_g_qCOM/maxresdefault.jpg' alt='Card image cap' />
                     <div className='card-block'>
                       <h4 className='card-title'>{client.name}</h4>
-                      <button className='btn btn-primary' data-toggle='modal' data-target={`#modal${client.id}`} onClick={this._fetchRescues.bind(null, client.id)}>Rescues</button>
+                      <button className='btn btn-primary updateButton' data-toggle='modal' data-target={`#modal${client.id}`} onClick={this._fetchRescues.bind(null, client.id)}>Rescues</button>
                     </div>
                     <div className='modal fade' id={`modal${client.id}`} tabIndex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                       <div className='modal-dialog' role='document'>

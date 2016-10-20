@@ -8,6 +8,7 @@ db.query(`CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
   clientId INT,
   name VARCHAR(80),
   type VARCHAR(80),
+  img VARCHAR(1000),
   PRIMARY KEY (id)
 )`, (err) => {
   if (err) throw err;

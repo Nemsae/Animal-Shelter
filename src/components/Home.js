@@ -4,7 +4,7 @@ export default class Home extends Component {
   render () {
     return (
       <div className='text-center'>
-        Home
+        <h1>Grab a Furry!</h1>
       </div>
     );
   }
