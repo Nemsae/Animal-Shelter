@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Popup, Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 import AnimalActions from '../actions/AnimalActions';
 import AnimalList from './AnimalList';
 import API from '../API';
@@ -9,11 +8,14 @@ export default class AnimalsPage extends Component {
     super();
 
     this.state = {
-      name: ''
+      name: '',
+      trigger: false
     };
 
     this._grabInput = this._grabInput.bind(this);
     this._submitNewEntry = this._submitNewEntry.bind(this);
+    this._fetchAdoptedList = this._fetchAdoptedList.bind(this);
+    this._fetchAnimalList = this._fetchAnimalList.bind(this);
   }
 
   componentWillMount () {
@@ -27,8 +29,24 @@ export default class AnimalsPage extends Component {
     });
   }
 
+  _fetchAnimalList () {
+    API.receiveAnimalList();
+    let { trigger } = this.state;
+    this.setState({
+      trigger: !trigger
+    });
+  }
+
+  _fetchAdoptedList () {
+    API.receiveAdoptedList();
+    let { trigger } = this.state;
+    this.setState({
+      trigger: !trigger
+    });
+  }
+
   _submitNewEntry () {
-    let { type, clientId } = this.refs;
+    let { type, clientId, input } = this.refs;
     let newAnimalPackage = {
       name: this.state.name,
       type: type.value,
@@ -37,17 +55,25 @@ export default class AnimalsPage extends Component {
     console.log('type: ', type.value);
     console.log('clientId: ', clientId.value);
     AnimalActions.sendNewAnimal(newAnimalPackage);
+    type.value = '';
+    clientId.value = '';
+    input.value = '';
   }
 
   render () {
+    let adopted = <button className='btn btn-secondary btn-danger' type='button' onClick={this._fetchAdoptedList}>Adopted</button>;
+    let all = <button className='btn btn-primary' type='button' onClick={this._fetchAnimalList}>See All</button>;
     return (
       <div className='text-center'>
         <h1>Animals Page</h1>
         <div className='col-lg-12'>
           <div className='input-group'>
-            <input type='text' className='form-control' onChange={this._grabInput} placeholder='Name of our new furry friend...' />
             <span className='input-group-btn'>
-              <button className='btn btn-secondary' data-toggle='modal' data-target='#myModal' type='button'>Add</button>
+              {this.state.trigger ? all : adopted}
+            </span>
+            <input type='text' ref='input' className='form-control' onChange={this._grabInput} placeholder='Name of our new furry friend...' />
+            <span className='input-group-btn'>
+              <button className='btn btn-secondary btn-success' data-toggle='modal' data-target='#myModal' type='button'>Add</button>
             </span>
           </div>
         </div>
@@ -72,21 +98,8 @@ export default class AnimalsPage extends Component {
             </div>
           </div>
         </div>
-        <AnimalList />
+        <AnimalList {...this.state} />
       </div>
     );
   }
 }
-
-// close () {
-//   this.setState({
-//     open: false
-//   });
-// }
-// show (dimmer) {
-//   this.setState({
-//     dimmer,
-//     open: true
-//   });
-// }
-// const { open, dimmer } = this.state;

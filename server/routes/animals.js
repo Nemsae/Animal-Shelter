@@ -27,16 +27,27 @@ router.route('/')
       });
   });
 
-// router.route('/adopted')
-//   .get((req, res) => {
-//     AnimalsModel.findAdopted()
-//       .then((adoptedAnimals) => {
-//         res.send(adoptedAnimals);
-//       })
-//       .catch((err) => {
-//         res.status(400).send(err);
-//       });
-//   });
+router.route('/adopted')
+  .get((req, res) => {
+    AnimalsModel.findAdopted()
+      .then((adoptedAnimals) => {
+        res.send(adoptedAnimals);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  });
+
+router.route('/notadopted')
+  .get((req, res) => {
+    AnimalsModel.findNotAdopted()
+      .then((notAdoptedAnimals) => {
+        res.send(notAdoptedAnimals);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  });
 
 router.route('/:id')
   .put((req, res) => {

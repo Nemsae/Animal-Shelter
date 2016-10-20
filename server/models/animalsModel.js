@@ -28,6 +28,7 @@ exports.findAdopted = function () {
                   .from(TABLE_NAME)
                   .field('Animals.id', 'id')
                   .field('Animals.name')
+                  .field('Animals.type')
                   .field('clientId')
                   .field('Clients.name', 'clientName')
                   .join('Clients', null, 'Animals.clientId = Clients.id')
@@ -40,10 +41,26 @@ exports.findAdopted = function () {
   });
 };
 
+exports.findNotAdopted = function () {
+  return new Promise((resolve, reject) => {
+    let sql = squel.select()
+                  .from(TABLE_NAME)
+                  .field('Animals.id', 'id')
+                  .field('Animals.name')
+                  .field('Animals.type')
+                  .where('Animals.clientId = 0')
+                  .toString();
+    db.query(sql, (err, notAdoptedAnimals) => {
+      if (err) return reject(err);
+      resolve(notAdoptedAnimals);
+    });
+  });
+};
+
 exports.create = function (animal) {
   // console.log('animal: ', animal);
   if (animal.clientId === '') {
-    animal.clientId = null;
+    animal.clientId = 0;
   }
   return new Promise((resolve, reject) => {
     let sql = squel.insert().into(TABLE_NAME).setFields(animal).toString();
@@ -58,7 +75,7 @@ exports.create = function (animal) {
 exports.update = function (animalId, updateObj) {
   console.log('updateObj: ', updateObj);
   if (updateObj.clientId === '') {
-    updateObj.clientId = null;
+    updateObj.clientId = 0;
   }
   return new Promise((resolve, reject) => {
     let sql = squel.update().table(TABLE_NAME).setFields(updateObj).where(`id = ${animalId}`).toString();

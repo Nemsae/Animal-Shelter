@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Layout from './components/Layout';
 import Home from './components/Home';
 import AnimalsPage from './components/AnimalsPage';
-// import FavoritesPage from './components/FavoritesPage';
+import AdoptedAnimals from './components/AdoptedAnimals';
 // import WatchList from './components/WatchList';
 
 render(
@@ -13,8 +13,8 @@ render(
     <Route path='/' component={Layout}>
       <IndexRoute component={Home} />
       <Route path='animals' component={AnimalsPage} />
-      {/* <Route path='favorites' component={FavoritesPage} />
-      <Route path='watchList' component={WatchList} /> */}
+      <Route path='adopted' component={AdoptedAnimals} />
+      {/* <Route path='watchList' component={WatchList} /> */}
     </Route>
   </Router>,
   document.getElementById('root')
