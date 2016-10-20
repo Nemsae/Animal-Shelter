@@ -22,11 +22,33 @@ const API = {
       });
   },
 
+  sendNewClient (client) {
+    axios.post('/api/clients', client)
+      .then((res) => {
+        console.log('res.data: ', res.data);
+        ServerActions.receiveClientsList(res.data);
+      })
+      .catch((err) => {
+        console.log('ERROR! API.sendNewClient', err);
+      });
+  },
+
   updateAnimal (id, uPackage) {
     axios.put(`/api/animals/${id}`, uPackage)
       .then((res) => {
         console.log('res: ', res.data);
         ServerActions.receiveAnimalList(res.data);
+      })
+      .catch((err) => {
+        console.log('ERROR! API.updateAnimal', err);
+      });
+  },
+
+  updateAnimal2 (id, uPackage) {
+    axios.put(`/api/animals/check/${id}`, uPackage)
+      .then((res) => {
+        console.log('res: ', res.data);
+        ServerActions.receiveNotAdoptedList(res.data);
       })
       .catch((err) => {
         console.log('ERROR! API.updateAnimal', err);
@@ -58,6 +80,17 @@ const API = {
       .then((res) => {
         // console.log('res: ', res.data);
         ServerActions.receiveClientsList(res.data);
+      })
+      .catch((err) => {
+        console.log('ERROR! API.receiveClientsList', err);
+      });
+  },
+
+  receiveClientsList2 () {
+    axios.get('/api/clients/rescues')
+      .then((res) => {
+        console.log('res: ', res.data);
+        // ServerActions.receiveClientsList(res.data);
       })
       .catch((err) => {
         console.log('ERROR! API.receiveClientsList', err);

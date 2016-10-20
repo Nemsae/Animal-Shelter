@@ -9,8 +9,6 @@ const AdoptedList = ({unadopted, clients, _adoptAnimal}) => {
         <div className='card-block'>
           <h4 className='card-title'>{animal.name}</h4>
           <p className='card-text'>Type: {animal.type}</p>
-          {/* <p className='card-text'>Client: {animal.clientName}</p> */}
-          {/* <a href='#' className='btn btn-primary updateButton' data-toggle='modal' data-target={`#modal${animal.id}`}>Adopt!</a> */}
           <div className='btn-group'>
             <button type='button updateButton' className='btn btn-success dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
               Adopt!

@@ -20,16 +20,18 @@ exports.findAll = function () {
   });
 };
 
-exports.findSpecific = function () {
+exports.findSpecific = function (id) {
+  console.log('id in models : ', id);
   return new Promise((resolve, reject) => {
     let sql = squel.select()
-                  .from(TABLE_NAME)
+                  .from('Animals')
                   .field('Animals.id', 'id')
                   .field('Animals.name')
                   .field('clientId')
                   .field('Clients.name', 'clientName')
                   .join('Clients', null, 'Animals.clientId = Clients.id')
-                  // .where('Animals.teamId = 1')
+                  // .join('Clients', null, `Animals.clientId = '${id}'`)
+                  .where(`Animals.clientId = '${id}'`)
                   .toString();
     db.query(sql, (err, players) => {
       if (err) return reject(err);

@@ -41,6 +41,25 @@ exports.findAdopted = function () {
   });
 };
 
+exports.findSpecific = function () {
+  return new Promise((resolve, reject) => {
+    let sql = squel.select()
+                  .from(TABLE_NAME)
+                  .field('Animals.id', 'id')
+                  .field('Animals.name')
+                  .field('Animals.type')
+                  .field('clientId')
+                  .field('Clients.name', 'clientName')
+                  .join('Clients', null, 'clientId != 0')
+                  // .where('Animals.clientId = 1')
+                  .toString();
+    db.query(sql, (err, adoptedAnimals) => {
+      if (err) return reject(err);
+      resolve(adoptedAnimals);
+    });
+  });
+};
+
 exports.findNotAdopted = function () {
   return new Promise((resolve, reject) => {
     let sql = squel.select()

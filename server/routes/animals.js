@@ -14,7 +14,6 @@ router.route('/')
       });
   })
   .post((req, res) => {
-    console.log('req.body: ', req.body);
     AnimalsModel.create(req.body)
       .then(() => {
         return AnimalsModel.findAll();
@@ -47,6 +46,20 @@ router.route('/notadopted')
       .catch((err) => {
         res.status(400).send(err);
       });
+  });
+
+router.route('/check/:id')
+  .put((req, res) => {
+    AnimalsModel.update(req.params.id, req.body)
+    .then(() => {
+      return AnimalsModel.findNotAdopted();
+    })
+    .then((animals) => {
+      res.send(animals);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
   });
 
 router.route('/:id')

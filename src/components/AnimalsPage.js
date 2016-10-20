@@ -52,8 +52,6 @@ export default class AnimalsPage extends Component {
       type: type.value,
       clientId: clientId.value
     };
-    console.log('type: ', type.value);
-    console.log('clientId: ', clientId.value);
     AnimalActions.sendNewAnimal(newAnimalPackage);
     type.value = '';
     clientId.value = '';

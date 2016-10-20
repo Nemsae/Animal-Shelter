@@ -6,7 +6,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import AnimalsPage from './components/AnimalsPage';
 import AdoptedAnimals from './components/AdoptedAnimals';
-// import WatchList from './components/WatchList';
+import TheSaints from './components/TheSaints';
 
 render(
   <Router history={browserHistory}>
@@ -14,6 +14,7 @@ render(
       <IndexRoute component={Home} />
       <Route path='animals' component={AnimalsPage} />
       <Route path='adopted' component={AdoptedAnimals} />
+      <Route path='clients' component={TheSaints} />
       {/* <Route path='watchList' component={WatchList} /> */}
     </Route>
   </Router>,

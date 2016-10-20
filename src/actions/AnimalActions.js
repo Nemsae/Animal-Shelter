@@ -8,6 +8,14 @@ const AnimalActions = {
 
   updateAnimal (id, uPackage) {
     API.updateAnimal(id, uPackage);
+  },
+
+  updateAnimal2 (id, uPackage) {
+    API.updateAnimal2(id, uPackage);
+  },
+
+  addNewClient (name) {
+    API.sendNewClient(name);
   }
 };
 

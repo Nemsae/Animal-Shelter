@@ -27,7 +27,7 @@ const ServerActions = {
     AppDispatcher.dispatch({
       type: types.RECEIVE_CLIENT_LIST,
       payload: { clientList }
-    })
+    });
   }
 };
 

@@ -14,6 +14,7 @@ router.route('/')
       });
   })
   .post((req, res) => {
+    console.log('req.body: ', req.body);
     ClientsModel.create(req.body)
       .then(() => {
         return ClientsModel.findAll();
@@ -38,6 +39,17 @@ router.route('/:id')
     .catch((err) => {
       res.status(400).send(err);
     });
+  });
+
+router.route('/rescues/:id')
+  .get((req, res) => {
+    ClientsModel.findSpecific(req.params.id)
+      .then((notAdoptedAnimals) => {
+        res.send(notAdoptedAnimals);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
   });
 
 module.exports = router;

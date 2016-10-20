@@ -38,7 +38,7 @@ export default class AdoptedAnimals extends Component {
     animal.clientId = clientsId;
     console.log('animal: ', animal);
     console.log('clientId: ', clientsId);
-    AnimalActions.updateAnimal(animal.id, animal);
+    AnimalActions.updateAnimal2(animal.id, animal);
   }
 
   render () {
