@@ -28,6 +28,13 @@ const ServerActions = {
       type: types.RECEIVE_CLIENT_LIST,
       payload: { clientList }
     });
+  },
+
+  receiveRescues (rescues) {
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_RESCUES,
+      payload: { rescues }
+    });
   }
 };
 

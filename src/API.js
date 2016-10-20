@@ -95,6 +95,17 @@ const API = {
       .catch((err) => {
         console.log('ERROR! API.receiveClientsList', err);
       });
+  },
+
+  receiveRescues (id) {
+    axios.get(`/api/clients/rescues/${id}`)
+      .then((res) => {
+        console.log('res: ', res.data);
+        ServerActions.receiveRescues(res.data);
+      })
+      .catch((err) => {
+        console.log('ERROR! API.receiveClientsList', err);
+      });
   }
 };
 

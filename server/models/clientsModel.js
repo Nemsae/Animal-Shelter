@@ -27,6 +27,7 @@ exports.findSpecific = function (id) {
                   .from('Animals')
                   .field('Animals.id', 'id')
                   .field('Animals.name')
+                  .field('Animals.type')
                   .field('clientId')
                   .field('Clients.name', 'clientName')
                   .join('Clients', null, 'Animals.clientId = Clients.id')
@@ -39,6 +40,26 @@ exports.findSpecific = function (id) {
     });
   });
 };
+//
+// exports.findSpecific = function (id) {
+//   console.log('id in models : ', id);
+//   return new Promise((resolve, reject) => {
+//     let sql = squel.select()
+//                   .from('Animals')
+//                   .field('Animals.id', 'id')
+//                   .field('Animals.name')
+//                   .field('clientId')
+//                   .field('Clients.name', 'clientName')
+//                   .join('Clients', null, 'Animals.clientId = Clients.id')
+//                   // .join('Clients', null, `Animals.clientId = '${id}'`)
+//                   .where(`Animals.clientId = '${id}'`)
+//                   .toString();
+//     db.query(sql, (err, players) => {
+//       if (err) return reject(err);
+//       resolve(players);
+//     });
+//   });
+// };
 
 exports.create = function (client) {
   return new Promise((resolve, reject) => {

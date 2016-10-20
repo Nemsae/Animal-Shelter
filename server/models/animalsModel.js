@@ -50,7 +50,7 @@ exports.findSpecific = function () {
                   .field('Animals.type')
                   .field('clientId')
                   .field('Clients.name', 'clientName')
-                  .join('Clients', null, 'clientId != 0')
+                  .join('Clients', null, 'Animals.clientId')
                   // .where('Animals.clientId = 1')
                   .toString();
     db.query(sql, (err, adoptedAnimals) => {

@@ -6,6 +6,7 @@ let _animals = [];
 let _adopted = [];
 let _unadopted = [];
 let _clients = [];
+let _rescues = [];
 
 class AnimalStore extends EventEmitter {
   constructor () {
@@ -31,6 +32,12 @@ class AnimalStore extends EventEmitter {
         case types.RECEIVE_CLIENT_LIST: {
           let { clientList } = action.payload;
           _clients = clientList;
+          this.emit('CHANGE');
+        } break;
+        case types.RECEIVE_RESCUES: {
+          let { rescues } = action.payload;
+          _rescues = rescues;
+          console.log('_rescues: ', _rescues);
           this.emit('CHANGE');
         } break;
       }
@@ -59,6 +66,10 @@ class AnimalStore extends EventEmitter {
 
   getClientList () {
     return _clients;
+  }
+
+  getRescues () {
+    return _rescues;
   }
 }
 
