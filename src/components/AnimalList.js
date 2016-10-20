@@ -44,8 +44,7 @@ export default class AnimalList extends Component {
 
   render () {
     let { animals } = this.state;
-    let { trigger } = this.props;
-    console.log('animals: ', animals);
+    // console.log('animals: ', animals);
     return (
       <div>
         {
