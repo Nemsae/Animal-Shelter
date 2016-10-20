@@ -17,3 +17,7 @@
 .dropDownBro {
   display: block;
 }
+
+.card-img-top {
+  margin-top: 10px;
+}

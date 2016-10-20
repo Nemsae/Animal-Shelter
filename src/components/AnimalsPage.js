@@ -46,16 +46,18 @@ export default class AnimalsPage extends Component {
   }
 
   _submitNewEntry () {
-    let { type, clientId, input } = this.refs;
+    let { type, clientId, input, img } = this.refs;
     let newAnimalPackage = {
       name: this.state.name,
       type: type.value,
-      clientId: clientId.value
+      clientId: clientId.value,
+      img: img.value
     };
     AnimalActions.sendNewAnimal(newAnimalPackage);
     type.value = '';
     clientId.value = '';
     input.value = '';
+    img.value = '';
   }
 
   render () {
@@ -88,6 +90,7 @@ export default class AnimalsPage extends Component {
               <div className='modal-body'>
                 <input className='col-xs-12' type='text' ref='type' placeholder='Type of animal...' />
                 <input className='col-xs-12' type='text' ref='clientId' placeholder='Client ID if applicable...' />
+                <input className='col-xs-12' type='text' ref='img' placeholder='Image URL...' />
               </div>
               <div className='modal-footer'>
                 <button type='button' className='btn btn-secondary' data-dismiss='modal'>Cancel Entry</button>

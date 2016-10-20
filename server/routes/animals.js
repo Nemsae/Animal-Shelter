@@ -28,6 +28,7 @@ router.route('/')
 
 router.route('/adopted')
   .get((req, res) => {
+    console.log('Sanity1: ')
     AnimalsModel.findAdopted()
       .then((adoptedAnimals) => {
         res.send(adoptedAnimals);

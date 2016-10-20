@@ -5,7 +5,7 @@ const AdoptedList = ({unadopted, clients, _adoptAnimal}) => {
   let unadoptedJSX = unadopted.map((animal) => {
     return (
       <div className='card col-xs-4' key={animal.id}>
-        <img className='card-img-top' src='https://i.ytimg.com/vi/9JmD_g_qCOM/maxresdefault.jpg' alt='Card image cap' />
+        <img className='card-img-top' src={animal.img || 'https://i.ytimg.com/vi/9JmD_g_qCOM/maxresdefault.jpg'} alt='Card image cap' />
         <div className='card-block'>
           <h4 className='card-title'>{animal.name}</h4>
           <p className='card-text'>Type: {animal.type}</p>

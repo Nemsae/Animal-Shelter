@@ -30,10 +30,10 @@ exports.findAdopted = function () {
                   .field('Animals.id', 'id')
                   .field('Animals.name')
                   .field('Animals.type')
+                  .field('Animals.img')
                   .field('clientId')
                   .field('Clients.name', 'clientName')
                   .join('Clients', null, 'Animals.clientId = Clients.id')
-                  // .where('Animals.clientId = 1')
                   .toString();
     db.query(sql, (err, adoptedAnimals) => {
       if (err) return reject(err);
@@ -62,12 +62,14 @@ exports.findSpecific = function () {
 };
 
 exports.findNotAdopted = function () {
+  console.log('Sanity');
   return new Promise((resolve, reject) => {
     let sql = squel.select()
                   .from(TABLE_NAME)
                   .field('Animals.id', 'id')
                   .field('Animals.name')
                   .field('Animals.type')
+                  .field('Animals.img')
                   .where('Animals.clientId = 0')
                   .toString();
     db.query(sql, (err, notAdoptedAnimals) => {

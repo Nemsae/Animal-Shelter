@@ -68,6 +68,7 @@ const API = {
   receiveAdoptedList () {
     axios.get('/api/animals/adopted')
       .then((res) => {
+        console.log('res.data: ', res.data);
         ServerActions.receiveAdoptedList(res.data);
       })
       .catch((err) => {

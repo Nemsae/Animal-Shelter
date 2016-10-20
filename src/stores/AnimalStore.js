@@ -21,6 +21,7 @@ class AnimalStore extends EventEmitter {
         } break;
         case types.RECEIVE_ADOPTED_LIST: {
           let { adoptedList } = action.payload;
+          console.log('adoptedList in store: ', adoptedList);
           _animals = adoptedList;
           this.emit('CHANGE');
         } break;

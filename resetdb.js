@@ -12,14 +12,14 @@ db.query('drop table Animals', (err) => {
   // require('./server/models/clientsModel');
 
   //  insert some sample data
-  let playerSql = squel.insert().into('Animals').setFieldsRows([
-    { name: 'John', type: 'Red Panda', img: 'http://i.imgur.com/RUoZBlm.png' },
+  let animalSql = squel.insert().into('Animals').setFieldsRows([
+    { name: 'John', type: 'Red Panda', img: 'http://i.imgur.com/RUoZBlm.png'},
     { name: 'Donovan', type: 'Golden Retriever', img: 'http://reliabletexaspower.com/wp-content/uploads/2014/12/golden-retriever.jpg'},
     { name: 'Josh', type: 'Seal', img: 'http://www.biologicaldiversity.org/assets/img/species/mammals/BeardedSealFlickr_foilistpeter.jpg'},
     { name: 'Miggy', type: 'Ferret', img: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/XenoFerret.jpg'}
   ]).toString();
 
-  db.query(playerSql, (err) => {
+  db.query(animalSql, (err) => {
     if (err) throw err;
   });
 
